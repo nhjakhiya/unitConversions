@@ -57,15 +57,16 @@
             <div class="conversion-box">
                 <div class="row">
                     <label>From:</label>
-                    <select id="unitFrom" onchange="updateConversion()"></select>
-                    <input type="number" id="valueFrom" placeholder="Value" oninput="updateConversion()">
+                    <select id="unitFrom" onchange="updateFromValue()"></select>
+                    <input type="number" id="valueFrom" placeholder="Value" oninput="updateFromValue()">
                 </div>
                 <div class="row">
                     <label>To:</label>
-                    <select id="unitTo" onchange="updateConversion()"></select>
-                    <input type="number" id="valueTo" placeholder="Value" readonly>
+                    <select id="unitTo" onchange="updateToValue()"></select>
+                    <input type="number" id="valueTo" placeholder="Value" oninput="updateToValue()">
                 </div>
             </div>
+            
         </div>
     </div>
 

@@ -3,13 +3,13 @@ const conversionData = {
     Length: {
         units: {
             Meter: 1,
-            Kilometer: 0.001,
-            Centimeter: 100,
-            Millimeter: 1000,
-            Inch: 39.3701,
-            Foot: 3.28084,
-            Yard: 1.09361,
-            Mile: 0.000621371
+            Kilometer: 1/0.001,
+            Centimeter: 1/100,
+            Millimeter: 1/1000,
+            Inch: 1/39.3701,
+            Foot: 1/3.28084,
+            Yard: 1/1.09361,
+            Mile: 1/0.000621371
         }
     },
     Mass: {
@@ -80,9 +80,8 @@ function loadCategory(category) {
     updateConversion();
 }
 
-
-// Function to perform the unit conversion
-function updateConversion() {
+// Function to perform the conversion when "From" value changes
+function updateFromValue() {
     const unitFrom = document.getElementById("unitFrom");
     const unitTo = document.getElementById("unitTo");
     const valueFrom = document.getElementById("valueFrom").value;
@@ -98,6 +97,26 @@ function updateConversion() {
         valueTo.value = result.toFixed(4);
     } else {
         valueTo.value = "";
+    }
+}
+
+// Function to perform the conversion when "To" value changes
+function updateToValue() {
+    const unitFrom = document.getElementById("unitFrom");
+    const unitTo = document.getElementById("unitTo");
+    const valueFrom = document.getElementById("valueFrom");
+    const valueTo = document.getElementById("valueTo").value;
+
+    // Get the conversion factors
+    const factorFrom = parseFloat(unitFrom.value);
+    const factorTo = parseFloat(unitTo.value);
+
+    // Calculate the converted value
+    if (!isNaN(valueTo)) {
+        const result = (valueTo * factorTo) / factorFrom;
+        valueFrom.value = result.toFixed(4);
+    } else {
+        valueFrom.value = "";
     }
 }
 
