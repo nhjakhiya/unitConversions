@@ -3,32 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time Unit Conversion</title>
+    <title>Unit Conversion</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Unit Conversion</h1>
-        
-        <!-- Category Selection -->
-        <div class="category-buttons">
-            <button id="lengthBtn" onclick="changeCategory('length')">Length</button>
-            <button id="timeBtn" onclick="changeCategory('time')">Time</button>
-            <button id="massBtn" onclick="changeCategory('mass')">Mass</button>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <button class="home-btn">Home</button>
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showPage('unitConversions')">Unit Conversions</button>
+            <button class="nav-btn" onclick="showPage('calculators')">Calculators</button>
+            <button class="nav-btn" onclick="showPage('scripts')">Scripts</button>
         </div>
-        
-        <!-- Conversion Form -->
-        <div id="conversionForm">
-            <label for="valueInput">Enter Value:</label>
-            <input type="number" id="valueInput" placeholder="Enter value" oninput="convertUnits()">
-            
-            <label for="unitFrom">From:</label>
-            <select id="unitFrom" onchange="convertUnits()"></select>
-            
-            <label for="unitTo">To:</label>
-            <select id="unitTo" onchange="convertUnits()"></select>
-            
-            <p>Converted Value: <span id="result">0</span></p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <button class="sidebar-btn" onclick="loadCategory('Length')">Length</button>
+            <button class="sidebar-btn" onclick="loadCategory('Mass')">Mass</button>
+            <button class="sidebar-btn" onclick="loadCategory('Time')">Time</button>
+            <button class="sidebar-btn" onclick="loadCategory('Volume')">Volume</button>
+            <button class="sidebar-btn" onclick="loadCategory('Area')">Area</button>
+            <button class="sidebar-btn" onclick="loadCategory('Force')">Force</button>
+            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure')">Stress/Pressure</button>
+            <button class="sidebar-btn" onclick="loadCategory('Acceleration')">Acceleration</button>
+            <button class="sidebar-btn" onclick="loadCategory('Length1')">Length1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Mass1')">Mass1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Time1')">Time1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Volume1')">Volume1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Area1')">Area1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Force1')">Force1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure1')">Stress/Pressure1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Acceleration1')">Acceleration1</button>
+            <button class="sidebar-btn" onclick="loadCategory('Length2')">Length2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Mass2')">Mass2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Time2')">Tim2e</button>
+            <button class="sidebar-btn" onclick="loadCategory('Volume2')">Volume2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Area2')">Area2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Force2')">Force2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure2')">Stress/Pressure2</button>
+            <button class="sidebar-btn" onclick="loadCategory('Acceleration2')">Acceleration2</button>
+
+
+
+
+        </div>
+
+        <!-- Right Content Area -->
+        <div class="content">
+            <h1>Unit Converter</h1>
+            <div class="conversion-box">
+                <div class="row">
+                    <label>From:</label>
+                    <select id="unitFrom" onchange="updateConversion()"></select>
+                    <input type="number" id="valueFrom" placeholder="Value" oninput="updateConversion()">
+                </div>
+                <div class="row">
+                    <label>To:</label>
+                    <select id="unitTo" onchange="updateConversion()"></select>
+                    <input type="number" id="valueTo" placeholder="Value" readonly>
+                </div>
+            </div>
         </div>
     </div>
 

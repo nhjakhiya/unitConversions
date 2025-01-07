@@ -1,131 +1,105 @@
-// Conversion Data: A map of conversion factors
+// Conversion factors for different categories
 const conversionData = {
-    length: {
-        meters: {
-            kilometers: 0.001,
-            centimeters: 100,
-            millimeters: 1000,
-        },
-        kilometers: {
-            meters: 1000,
-            centimeters: 100000,
-            millimeters: 1000000,
-        },
-        centimeters: {
-            meters: 0.01,
-            kilometers: 0.00001,
-            millimeters: 10,
-        },
-        millimeters: {
-            meters: 0.001,
-            kilometers: 0.000001,
-            centimeters: 0.1,
-        },
+    Length: {
+        units: {
+            Meter: 1,
+            Kilometer: 0.001,
+            Centimeter: 100,
+            Millimeter: 1000,
+            Inch: 39.3701,
+            Foot: 3.28084,
+            Yard: 1.09361,
+            Mile: 0.000621371
+        }
     },
-    mass: {
-        grams: {
-            kilograms: 0.001,
-            milligrams: 1000,
-            pounds: 0.00220462,
-        },
-        kilograms: {
-            grams: 1000,
-            milligrams: 1000000,
-            pounds: 2.20462,
-        },
-        milligrams: {
-            grams: 0.001,
-            kilograms: 0.000001,
-            pounds: 0.00000220462,
-        },
-        pounds: {
-            grams: 453.592,
-            kilograms: 0.453592,
-            milligrams: 453592,
-        },
+    Mass: {
+        units: {
+            Kilogram: 1,
+            Gram: 1000,
+            Milligram: 1000000,
+            Pound: 2.20462,
+            Ounce: 35.274,
+            Ton: 0.001
+        }
     },
-    time: {
-        seconds: {
-            minutes: 1 / 60,
-            hours: 1 / 3600,
-            days: 1 / 86400,
-        },
-        minutes: {
-            seconds: 60,
-            hours: 1 / 60,
-            days: 1 / 1440,
-        },
-        hours: {
-            seconds: 3600,
-            minutes: 60,
-            days: 1 / 24,
-        },
-        days: {
-            seconds: 86400,
-            minutes: 1440,
-            hours: 24,
-        },
+    Time: {
+        units: {
+            Second: 1,
+            Minute: 1 / 60,
+            Hour: 1 / 3600,
+            Day: 1 / 86400
+        }
     },
+    Volume: {
+        units: {
+            Liter: 1,
+            Milliliter: 1000,
+            CubicMeter: 0.001,
+            Gallon: 0.264172,
+            Pint: 2.11338
+        }
+    }
 };
 
-// Initialize with length category
-window.onload = () => changeCategory('length');
+// Function to load the selected category and populate dropdowns
+function loadCategory(category) {
+    const unitFrom = document.getElementById("unitFrom");
+    const unitTo = document.getElementById("unitTo");
 
-let currentCategory = 'length';
-
-function changeCategory(category) {
-    currentCategory = category;
-    loadUnits();
-
-    // Remove active class from all buttons
-    document.getElementById('lengthBtn').classList.remove('active');
-    document.getElementById('timeBtn').classList.remove('active');
-    document.getElementById('massBtn').classList.remove('active');
-
-    // Add active class to the selected category button
-    if (category === 'length') {
-        document.getElementById('lengthBtn').classList.add('active');
-    } else if (category === 'time') {
-        document.getElementById('timeBtn').classList.add('active');
-    } else if (category === 'mass') {
-        document.getElementById('massBtn').classList.add('active');
-    }
-}
-
-function loadUnits() {
-    let unitFrom = document.getElementById('unitFrom');
-    let unitTo = document.getElementById('unitTo');
-    unitFrom.innerHTML = '';
-    unitTo.innerHTML = '';
-    
-    let units = Object.keys(conversionData[currentCategory]);
-    
-    units.forEach(unit => {
-        let optionFrom = document.createElement('option');
-        optionFrom.value = unit;
-        optionFrom.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
-        unitFrom.appendChild(optionFrom);
-        
-        let optionTo = document.createElement('option');
-        optionTo.value = unit;
-        optionTo.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
-        unitTo.appendChild(optionTo);
+    // Highlight the selected button
+    const buttons = document.querySelectorAll(".sidebar-btn");
+    buttons.forEach(button => {
+        if (button.textContent === category) {
+            button.classList.add("active");
+        } else {
+            button.classList.remove("active");
+        }
     });
-}
 
-function convertUnits() {
-    let value = parseFloat(document.getElementById('valueInput').value);
-    let unitFrom = document.getElementById('unitFrom').value;
-    let unitTo = document.getElementById('unitTo').value;
+    // Clear previous options
+    unitFrom.innerHTML = "";
+    unitTo.innerHTML = "";
 
-    let result = 0;
+    // Populate dropdowns with units from the selected category
+    const units = conversionData[category]?.units || {};
+    for (const unit in units) {
+        const optionFrom = document.createElement("option");
+        optionFrom.value = units[unit];
+        optionFrom.textContent = unit;
+        unitFrom.appendChild(optionFrom);
 
-    // Look up the conversion factor for the selected category, from, and to units
-    if (conversionData[currentCategory][unitFrom] && conversionData[currentCategory][unitFrom][unitTo]) {
-        result = value * conversionData[currentCategory][unitFrom][unitTo];
-    } else {
-        result = value; // If no conversion factor found, return the original value
+        const optionTo = document.createElement("option");
+        optionTo.value = units[unit];
+        optionTo.textContent = unit;
+        unitTo.appendChild(optionTo);
     }
 
-    document.getElementById('result').textContent = result;
+    // Set default conversion
+    unitFrom.selectedIndex = 0;
+    unitTo.selectedIndex = 1;
+    updateConversion();
 }
+
+
+// Function to perform the unit conversion
+function updateConversion() {
+    const unitFrom = document.getElementById("unitFrom");
+    const unitTo = document.getElementById("unitTo");
+    const valueFrom = document.getElementById("valueFrom").value;
+    const valueTo = document.getElementById("valueTo");
+
+    // Get the conversion factors
+    const factorFrom = parseFloat(unitFrom.value);
+    const factorTo = parseFloat(unitTo.value);
+
+    // Calculate the converted value
+    if (!isNaN(valueFrom)) {
+        const result = (valueFrom * factorFrom) / factorTo;
+        valueTo.value = result.toFixed(4);
+    } else {
+        valueTo.value = "";
+    }
+}
+
+// Initialize with the "Length" category
+loadCategory("Length");
