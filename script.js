@@ -19,24 +19,25 @@ const conversionData = {
             Milligram: 1000000,
             Pound: 2.20462,
             Ounce: 35.274,
-            Ton: 0.001
+            Ton: 1000
         }
     },
     Time: {
         units: {
             Second: 1,
-            Minute: 1 / 60,
-            Hour: 1 / 3600,
-            Day: 1 / 86400
+            Minute:  60,
+            Hour:  3600,
+            Day:  86400
         }
     },
     Volume: {
         units: {
             Liter: 1,
-            Milliliter: 1000,
-            CubicMeter: 0.001,
-            Gallon: 0.264172,
-            Pint: 2.11338
+            Milliliter: 1/1000,
+            CubicMeter: 1/0.001,
+            CubicMillimeter: 1/1000000,
+            Gallon: 1/0.264172,
+            Pint: 1/2.11338
         }
     }
 };
@@ -94,7 +95,7 @@ function updateFromValue() {
     // Calculate the converted value
     if (!isNaN(valueFrom)) {
         const result = (valueFrom * factorFrom) / factorTo;
-        valueTo.value = result.toFixed(4);
+        valueTo.value = result;
     } else {
         valueTo.value = "";
     }
@@ -114,7 +115,8 @@ function updateToValue() {
     // Calculate the converted value
     if (!isNaN(valueTo)) {
         const result = (valueTo * factorTo) / factorFrom;
-        valueFrom.value = result.toFixed(4);
+        //console.log("Result before formatting:", result); // Debugging
+        valueFrom.value = result;
     } else {
         valueFrom.value = "";
     }
