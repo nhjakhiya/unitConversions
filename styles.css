@@ -148,4 +148,31 @@ input[readonly] {
     font-weight: bold;
     border: 2px solid #005f73;
 }
+/* Subcategory styling */
+.subcategory {
+    margin-left: 20px;
+    margin-top: 10px;
+}
 
+.sidebar-btn.active {
+    background-color: #94d2bd; /* Highlight color */
+    color: black;
+    font-weight: bold;
+    border: 2px solid #005f73;
+}
+
+.subcategory button.sidebar-btn {
+    margin-bottom: 5px;
+}
+
+/* Arrow styling */
+.arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when the menu is open */
+.subcategory.visible ~ .sidebar-btn .arrow {
+    transform: rotate(180deg);
+}

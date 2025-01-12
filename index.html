@@ -20,36 +20,59 @@
     <!-- Main Content -->
     <div class="main-content">
         <!-- Left Sidebar -->
-        <div class="sidebar">
-            <button class="sidebar-btn" onclick="loadCategory('Length')">Length</button>
-            <button class="sidebar-btn" onclick="loadCategory('Mass')">Mass</button>
-            <button class="sidebar-btn" onclick="loadCategory('Time')">Time</button>
-            <button class="sidebar-btn" onclick="loadCategory('Volume')">Volume</button>
-            <button class="sidebar-btn" onclick="loadCategory('Area')">Area</button>
-            <button class="sidebar-btn" onclick="loadCategory('Force')">Force</button>
-            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure')">Stress/Pressure</button>
-            <button class="sidebar-btn" onclick="loadCategory('Acceleration')">Acceleration</button>
-            <button class="sidebar-btn" onclick="loadCategory('Length1')">Length1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Mass1')">Mass1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Time1')">Time1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Volume1')">Volume1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Area1')">Area1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Force1')">Force1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure1')">Stress/Pressure1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Acceleration1')">Acceleration1</button>
-            <button class="sidebar-btn" onclick="loadCategory('Length2')">Length2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Mass2')">Mass2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Time2')">Tim2e</button>
-            <button class="sidebar-btn" onclick="loadCategory('Volume2')">Volume2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Area2')">Area2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Force2')">Force2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Stress/Pressure2')">Stress/Pressure2</button>
-            <button class="sidebar-btn" onclick="loadCategory('Acceleration2')">Acceleration2</button>
+        <!-- Left Sidebar -->
+    <!-- Left Sidebar -->
+<div class="sidebar">
+    <!-- General Units Category with Downward Arrow -->
+    <button class="sidebar-btn" onclick="toggleCategory('generalUnits')">
+        General Units <span class="arrow">&#9660;</span>
+    </button>
+    <div id="generalUnits" class="subcategory" style="display: none;">
+        <button class="sidebar-btn" onclick="loadCategory('Length')">Length</button>
+        <button class="sidebar-btn" onclick="loadCategory('Mass')">Mass</button>
+        <button class="sidebar-btn" onclick="loadCategory('Time')">Time</button>
+    </div>
 
-
-
-
+    <!-- Mechanical units -->
+    <button class="sidebar-btn" onclick="toggleCategory('mechanicalUnits')">
+        Mechanical Units <span class="arrow">&#9660;</span>
+    </button>
+    <div id="mechanicalUnits" class="subcategory" style="display: none;">
+        <button class="sidebar-btn" onclick="loadCategory('Force')">Force</button>
+        <button class="sidebar-btn" onclick="loadCategory('Stress')">Stress</button>
+        <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+        <button class="sidebar-btn" onclick="loadCategory('Power')">Power</button>
+        <button class="sidebar-btn" onclick="loadCategory('Acceleration')">Acceleration</button>
+      
+    </div>
+        <!-- Thermal units -->
+        <button class="sidebar-btn" onclick="toggleCategory('thermalUnits')">
+            Thermal Units <span class="arrow">&#9660;</span>
+        </button>
+        <div id="thermalUnits" class="subcategory" style="display: none;">
+            <button class="sidebar-btn" onclick="loadCategory('Temperature')">Temperature</button>
+            <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+            <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+            <button class="sidebar-btn" onclick="loadCategory('Stress')">Power</button>
+            <button class="sidebar-btn" onclick="loadCategory('Force')">Acceleration</button>
+          
         </div>
+        <!-- Flow units -->
+        <button class="sidebar-btn" onclick="toggleCategory('flowUnits')">
+            Flow Units <span class="arrow">&#9660;</span>
+        </button>
+        <div id="flowUnits" class="subcategory" style="display: none;">
+            <button class="sidebar-btn" onclick="loadCategory('VolumeFlowRate')">VolumeFlowRate</button>
+            <button class="sidebar-btn" onclick="loadCategory('Density')">Density</button>
+            <button class="sidebar-btn" onclick="loadCategory('Speed')">Speed</button>
+
+          
+        </div>
+    
+    <!-- More categories can be added here -->
+</div>
+
+
 
         <!-- Right Content Area -->
         <div class="content">
