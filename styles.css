@@ -1,63 +1,178 @@
+/* General styles */
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    padding: 0;
+    height: 100vh; /* Full height for the viewport */
+    overflow: hidden; /* Prevent body from scrolling */
+    display: flex;
+    flex-direction: column;
 }
 
-.container {
-    background-color: white;
+/* Top Navigation */
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #005f73;
+    padding: 10px 20px;
+    color: white;
+    height: 50px; /* Fixed height */
+    flex-shrink: 0;
+}
+
+.home-btn {
+    background-color: #0a9396;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background-color: #0a9396;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-btn.active {
+    background-color: #94d2bd;
+    color: black;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 50px); /* Fill remaining space under the navigation */
+    overflow: hidden; /* Prevent scrolling of the main content */
+}
+
+/* Left Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #e9d8a6;
+    padding: 10px;
+    overflow-y: auto; /* Enables vertical scrolling */
+    border-right: 1px solid #ccc;
+}
+
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    background-color: #ca6702;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sidebar-btn:hover {
+    background-color: #bb3e03;
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #9b2226;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #7b2a2d;
+}
+
+/* Right Content Area */
+.content {
+    flex: 1;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-}
-
-input, select {
-    margin: 10px;
-    padding: 8px;
-    width: 80%;
+    overflow-y: auto;
 }
 
 h1 {
-    color: #333;
+    margin-bottom: 20px;
+    color: #005f73;
 }
 
-.category-buttons button {
-    margin: 10px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+.conversion-box {
+    border: 1px solid #ccc;
     border-radius: 5px;
+    padding: 20px;
+    background-color: #fefae0;
 }
 
-.category-buttons button:hover {
-    background-color: #45a049;
-}
-
-.category-buttons button.active {
-    background-color: #009688;
-    border: 2px solid #00796b;
-}
-
-/* Aligning labels and select boxes vertically */
-#conversionForm {
+.row {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 15px;
+    gap: 10px;
 }
 
 label {
+    flex: 0 0 50px;
+    font-weight: bold;
+}
+
+select, input {
+    padding: 8px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[readonly] {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+/* Active Sidebar Button */
+.sidebar-btn.active {
+    background-color: #94d2bd; /* Highlight color */
+    color: black;
+    font-weight: bold;
+    border: 2px solid #005f73;
+}
+/* Subcategory styling */
+.subcategory {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.sidebar-btn.active {
+    background-color: #94d2bd; /* Highlight color */
+    color: black;
+    font-weight: bold;
+    border: 2px solid #005f73;
+}
+
+.subcategory button.sidebar-btn {
     margin-bottom: 5px;
 }
 
-select {
-    margin-bottom: 15px; /* Space between select elements */
+/* Arrow styling */
+.arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when the menu is open */
+.subcategory.visible ~ .sidebar-btn .arrow {
+    transform: rotate(180deg);
 }

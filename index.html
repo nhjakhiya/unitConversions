@@ -3,32 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time Unit Conversion</title>
+    <title>Unit Conversion</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Unit Conversion</h1>
-        
-        <!-- Category Selection -->
-        <div class="category-buttons">
-            <button id="lengthBtn" onclick="changeCategory('length')">Length</button>
-            <button id="timeBtn" onclick="changeCategory('time')">Time</button>
-            <button id="massBtn" onclick="changeCategory('mass')">Mass</button>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <button class="home-btn">Home</button>
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showPage('unitConversions')">Unit Conversions</button>
+            <button class="nav-btn" onclick="showPage('calculators')">Calculators</button>
+            <button class="nav-btn" onclick="showPage('scripts')">Scripts</button>
         </div>
-        
-        <!-- Conversion Form -->
-        <div id="conversionForm">
-            <label for="valueInput">Enter Value:</label>
-            <input type="number" id="valueInput" placeholder="Enter value" oninput="convertUnits()">
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <!-- Left Sidebar -->
+    <!-- Left Sidebar -->
+<div class="sidebar">
+    <!-- General Units Category with Downward Arrow -->
+    <button class="sidebar-btn" onclick="toggleCategory('generalUnits')">
+        General Units <span class="arrow">&#9660;</span>
+    </button>
+    <div id="generalUnits" class="subcategory" style="display: none;">
+        <button class="sidebar-btn" onclick="loadCategory('Length')">Length</button>
+        <button class="sidebar-btn" onclick="loadCategory('Mass')">Mass</button>
+        <button class="sidebar-btn" onclick="loadCategory('Time')">Time</button>
+    </div>
+
+    <!-- Mechanical units -->
+    <button class="sidebar-btn" onclick="toggleCategory('mechanicalUnits')">
+        Mechanical Units <span class="arrow">&#9660;</span>
+    </button>
+    <div id="mechanicalUnits" class="subcategory" style="display: none;">
+        <button class="sidebar-btn" onclick="loadCategory('Force')">Force</button>
+        <button class="sidebar-btn" onclick="loadCategory('Stress')">Stress</button>
+        <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+        <button class="sidebar-btn" onclick="loadCategory('Power')">Power</button>
+        <button class="sidebar-btn" onclick="loadCategory('Acceleration')">Acceleration</button>
+      
+    </div>
+        <!-- Thermal units -->
+        <button class="sidebar-btn" onclick="toggleCategory('thermalUnits')">
+            Thermal Units <span class="arrow">&#9660;</span>
+        </button>
+        <div id="thermalUnits" class="subcategory" style="display: none;">
+            <button class="sidebar-btn" onclick="loadCategory('Temperature')">Temperature</button>
+            <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+            <button class="sidebar-btn" onclick="loadCategory('Energy')">Energy</button>
+            <button class="sidebar-btn" onclick="loadCategory('Stress')">Power</button>
+            <button class="sidebar-btn" onclick="loadCategory('Force')">Acceleration</button>
+          
+        </div>
+        <!-- Flow units -->
+        <button class="sidebar-btn" onclick="toggleCategory('flowUnits')">
+            Flow Units <span class="arrow">&#9660;</span>
+        </button>
+        <div id="flowUnits" class="subcategory" style="display: none;">
+            <button class="sidebar-btn" onclick="loadCategory('VolumeFlowRate')">VolumeFlowRate</button>
+            <button class="sidebar-btn" onclick="loadCategory('Density')">Density</button>
+            <button class="sidebar-btn" onclick="loadCategory('Speed')">Speed</button>
+
+          
+        </div>
+    
+    <!-- More categories can be added here -->
+</div>
+
+
+
+        <!-- Right Content Area -->
+        <div class="content">
+            <h1>Unit Converter</h1>
+            <div class="conversion-box">
+                <div class="row">
+                    <label>From:</label>
+                    <select id="unitFrom" onchange="updateFromValue()"></select>
+                    <input type="text" id="valueFrom" placeholder="Value" oninput="updateFromValue()">
+                </div>
+                <div class="row">
+                    <label>To:</label>
+                    <select id="unitTo" onchange="updateToValue()"></select>
+                    <input type="text" id="valueTo" placeholder="Value" oninput="updateToValue()">
+                </div>
+            </div>
             
-            <label for="unitFrom">From:</label>
-            <select id="unitFrom" onchange="convertUnits()"></select>
-            
-            <label for="unitTo">To:</label>
-            <select id="unitTo" onchange="convertUnits()"></select>
-            
-            <p>Converted Value: <span id="result">0</span></p>
         </div>
     </div>
 
